@@ -20,19 +20,17 @@ class OdomToTf(Node):
         self.last_orientation.z = 0.0
         self.last_orientation.w = 1.0
 
-        self.sub_position = self.create_subscription(Vector3, "/odom_position", self.odom_position_callback)
-        self.sub_orientation = self.create_subscription(Quaternion, "/odom_orientation", self.odom_orientation_callback)
+        self.sub_robot_pose = self.create_subscription(Vector3, "/robot_pose", self.robot_pose_callback)
         self.pub_tf = self.create_publisher(TFMessage, "/tf")
 
         self.tf_timer = self.create_timer(0.05, self.tf_timer_callback)
 
     
-    def odom_position_callback(self, msg):
-        self.last_position = msg;
-
-
-    def odom_orientation_callback(self, msg):
-        self.last_orientation = msg;
+    def robot_pose_callback(self, msg):
+        self.last_position.x = msg.x;
+        self.last_position.y = msg.y;
+        self.last_orientation.z = math.sin(msg.z / 2.0);
+        self.last_orientation.w = math.cos(msg.z / 2.0);
 
 
     def tf_timer_callback(self):
