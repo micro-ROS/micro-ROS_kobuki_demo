@@ -8,6 +8,12 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 
 
+# Significant parts of this file have been ported on 20 March 2019 by Ralph Lange
+# from the teleop_twist_keyboard (v0.6.2) package for ROS 1, which is licensed
+# under the 3-Clause BSD License. See 3rd-party-licenses.txt in the root of this
+# repository for further information.
+
+
 msg = """
 Reading from the keyboard  and Publishing to Twist!
 ---------------------------
