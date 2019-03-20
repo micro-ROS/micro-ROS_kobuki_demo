@@ -3,7 +3,7 @@
 Want to contribute? Great! You can do so through the standard GitHub pull
 request model. For large contributions we do encourage you to file a ticket in
 the GitHub issues tracking system prior to any code development to coordinate
-with the microROS_kobuki_demo development team early in the process. Coordinating
+with the micro-ROS_kobuki_demo development team early in the process. Coordinating
 up front helps to avoid frustration later on.
 
 Your contribution must be licensed under the Apache-2.0 license, the license
@@ -23,7 +23,7 @@ Certificate of Origin (DCO; from [OSDL][DCO]) and Signed-off-by tags initially
 developed by the Linux kernel project.
 
 ```
-microROS_kobuki_demo Developer's Certificate of Origin.  Version 1.0
+micro-ROS_kobuki_demo Developer's Certificate of Origin.  Version 1.0
 
 By making a contribution to this project, I certify that:
 
@@ -56,7 +56,7 @@ By making a contribution to this project, I certify that:
 
 With the sign-off in a commit message you certify that you authored the patch
 or otherwise have the right to submit it under an open source license. The
-procedure is simple: To certify above microROS_kobuki_demo Developer's Certificate
+procedure is simple: To certify above micro-ROS_kobuki_demo Developer's Certificate
 of Origin 1.0 for your contribution just append a line
 
     Signed-off-by: Random J Developer <random@developer.example.org>
@@ -79,7 +79,7 @@ Often employers or academic institution have ownership over code that is
 written in certain circumstances, so please do due diligence to ensure that
 you have the right to submit the code.
 
-If you are a developer who is authorized to contribute to microROS_kobuki_demo on
+If you are a developer who is authorized to contribute to micro-ROS_kobuki_demo on
 behalf of your employer, then please use your corporate email address in the
 Signed-off-by tag. Otherwise please use a personal email address.
 
@@ -90,7 +90,7 @@ Each contributor is responsible for identifying themselves in the
 Please add the respective information corresponding to the Signed-off-by tag
 as part of your first pull request.
 
-If you are a developer who is authorized to contribute to microROS_kobuki_demo on
+If you are a developer who is authorized to contribute to micro-ROS_kobuki_demo on
 behalf of your employer, then add your company / organization to the list of
 copyright holders in the [NOTICE](NOTICE) file. As author of a corporate
 contribution you can also add your name and corporate email address as in the

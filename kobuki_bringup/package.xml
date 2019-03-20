@@ -3,7 +3,7 @@
 <package format="2">
   <name>kobuki_bringup</name>
   <version>0.0.1</version>
-  <description>Launch file for ROS 2 for the microROS demo based on a Kobuki</description>
+  <description>Launch file for ROS 2 for the micro-ROS demo based on a Kobuki</description>
   <maintainer email="ralph.lange@de.bosch.com">Ralph Lange</maintainer>
   <license>Apache 2.0</license>
 
