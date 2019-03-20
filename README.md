@@ -2,6 +2,10 @@
 
 This repository provides a demo of micro-ROS (and in particular its client library features) based on a [Kobuki (Turtlebot 2)](http://kobuki.yujinrobot.com/about2/) and an [Olimex STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware).
 
+The basic idea and working principle is as follows: Instead of the typical laptop running ROS, the Kobuki is equipped with a STM32 F4 microcontroller only. This STM32 F4 runs the micro-ROS stack and a port of the [thin_kobuki driver](https://github.com/Lab-RoCoCo/thin_drivers/blob/master/thin_kobuki/), which interacts with the robot's firmware (which runs on a built-in microcontroller). The STM32 F4 communicates the sensor data via DDS-XRCE to a remote laptop running a standard ROS 2 stack, the micro-ROS agent and rviz. At the same time, using the other direction of communication, the Kobuki can be remote-controlled.
+
+![Illustration of idea and working principle](README_idea.png)
+
 In detail, this repository contains the following ROS 2 and micro-ROS packages:
 
 * [kobuki_bringup](kobuki_bringup/) provides a launch file to start rviz2, robot_state_publisher and the odom_to_tf node.
