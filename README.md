@@ -12,6 +12,7 @@ In detail, this repository contains the following ROS 2 and micro-ROS packages:
 * [kobuki_description](kobuki_description/) provides the URDF and meshes and textures for the Kobuki.
 * [odom_to_tf](odom_to_tf/) implements a node to translate the odometry data received via micro-ROS from the Olimex board to TF.
 * [simple_keyboard_teleop](simple_keyboard_teleop/) provides a keyboard control in the style of [teleop_twist_keyboard](http://wiki.ros.org/teleop_twist_keyboard) from ROS 1.
+* _The port of the [thin_kobuki driver](https://github.com/Lab-RoCoCo/thin_drivers/blob/master/thin_kobuki/) to micro-ROS is not yet integrated in this repository but can be found at [https://github.com/microROS/apps/tree/drive_base/examples/kobuki](https://github.com/microROS/apps/tree/drive_base/examples/kobuki)._
 
 Technical information on these packages is given in the README.md files in the corresponding subfolders.
 
