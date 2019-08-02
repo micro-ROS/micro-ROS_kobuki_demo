@@ -1,5 +1,5 @@
 # Copyright (c) 2019 - for information on the respective copyright owner
-# see the NOTICE file and/or the repository https://github.com/micro-ROS/micro-ros_kobuki-demo.
+# see the NOTICE file and/or the repository https://github.com/micro-ROS/micro-ROS_kobuki_demo.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from setuptools import find_packages
 from setuptools import setup
 
-package_name = 'micro-ros_kobuki-demo_remote'
+package_name = 'micro-ros_kobuki_demo_remote'
 
 setup(
     name=package_name,
@@ -34,7 +34,7 @@ setup(
     author_email='ralph.lange@de.bosch.com',
     maintainer='Ralph Lange',
     maintainer_email='ralph.lange@de.bosch.com',
-    keywords=['micro-ROS', 'kobuki-demo'],
+    keywords=['micro-ROS', 'Kobuki', 'demo'],
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',

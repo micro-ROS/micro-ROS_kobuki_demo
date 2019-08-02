@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
-  <name>micro-ros_kobuki-demo_remote</name>
+  <name>micro-ros_kobuki_demo_remote</name>
   <version>0.0.1</version>
   <description>Launch file for ROS 2 for the micro-ROS demo based on a Kobuki</description>
   <maintainer email="ralph.lange@de.bosch.com">Ralph Lange</maintainer>
@@ -16,7 +16,7 @@
   <depend>tf2_ros</depend>
   <depend>geometry_msgs</depend>
   <depend>visualization_msgs</depend>
-  <exec_depend>micro-ros_kobuki-demo_kobuki-description</exec_depend>
+  <exec_depend>micro-ros_kobuki_demo_robot-description</exec_depend>
   <exec_depend>teleop_twist_joy</exec_depend>
   <exec_depend>teleop_twist_keyboard</exec_depend>
 

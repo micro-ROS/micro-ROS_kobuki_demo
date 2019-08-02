@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(micro-ros_kobuki-demo_kobuki-description)
+project(micro-ros_kobuki_demo_robot-description)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)

@@ -1,5 +1,5 @@
 # Copyright (c) 2019 - for information on the respective copyright owner
-# see the NOTICE file and/or the repository https://github.com/micro-ROS/micro-ros_kobuki-demo.
+# see the NOTICE file and/or the repository https://github.com/micro-ROS/micro-ROS_kobuki_demo.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,13 +21,13 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    urdf = os.path.join(get_package_share_directory('micro-ros_kobuki-demo_kobuki-description'),
+    urdf = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_robot-description'),
                         'urdf', 'kobuki.urdf')
 
-    rviz_config = os.path.join(get_package_share_directory('micro-ros_kobuki-demo_remote'),
+    rviz_config = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_remote'),
                                'config', 'kobuki.rviz')
 
-    joy_params = os.path.join(get_package_share_directory('micro-ros_kobuki-demo_remote'),
+    joy_params = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_remote'),
                               'config', 'joy.params')
 
     return LaunchDescription([
@@ -44,7 +44,7 @@ def generate_launch_description():
             node_executable='teleop_node',
             output='screen', arguments=['__params:=' + joy_params]),
         Node(
-            package='micro-ros_kobuki-demo_remote',
+            package='micro-ros_kobuki_demo_remote',
             node_executable='odom_to_tf',
             output='screen'),
         Node(

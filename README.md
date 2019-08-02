@@ -1,4 +1,4 @@
-# The micro-ROS_kobuki-demo repository
+# The micro-ROS_kobuki_demo repository
 
 This repository provides a demo of micro-ROS (and in particular its client library features) based on a [Kobuki (Turtlebot 2)](http://kobuki.yujinrobot.com/about2/) and an [Olimex STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware).
 
@@ -8,8 +8,8 @@ The basic idea and working principle is as follows: Instead of the typical lapto
 
 In detail, this repository contains the following ROS 2 and micro-ROS packages:
 
-* [micro-ros_kobuki-demo_remote](micro-ros_kobuki-demo_remote/) provides a launch file to start rviz2, robot_state_publisher and the odom_to_tf node.
-* [micro-ros_kobuki-demo_kobuki-description](micro-ros_kobuki-demo_kobuki-description/) provides the URDF and meshes and textures for the Kobuki.
+* [micro-ros_kobuki_demo_remote](micro-ros_kobuki_demo_remote/) provides a launch file to start rviz2, robot_state_publisher and the odom_to_tf node.
+* [micro-ros_kobuki_demo_robot-description](micro-ros_kobuki_demo_robot-description/) provides the URDF and meshes and textures for the Kobuki.
 * _The port of the [thin_kobuki driver](https://github.com/Lab-RoCoCo/thin_drivers/blob/master/thin_kobuki/) to micro-ROS is not yet integrated in this repository but can be found at [https://github.com/microROS/apps/tree/drive_base/examples/kobuki](https://github.com/microROS/apps/tree/drive_base/examples/kobuki)._
 
 Technical information on these packages is given in the README.md files in the corresponding subfolders.
@@ -24,9 +24,9 @@ Clone the repository into a ROS workspace and build it using [colcon](https://co
 
 ## License
 
-micro-ROS_kobuki-demo is open-sourced under the Apache-2.0 license. See the [LICENSE](LICENSE) file for details.
+micro-ROS_kobuki_demo is open-sourced under the Apache-2.0 license. See the [LICENSE](LICENSE) file for details.
 
-For a list of other open source components included in micro-ROS_kobuki-demo, see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
+For a list of other open source components included in micro-ROS_kobuki_demo, see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
 
 ## Quality assurance
 
