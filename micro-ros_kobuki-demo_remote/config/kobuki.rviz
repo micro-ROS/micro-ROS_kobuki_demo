@@ -48,7 +48,7 @@ Visualization Manager:
     - Alpha: 1
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
-      Description File: ./install/kobuki_description/share/kobuki_description/urdf/kobuki.urdf
+      Description File: ./install/micro-ros_kobuki-demo_kobuki-description/share/micro-ros_kobuki-demo_kobuki-description/urdf/kobuki.urdf
       Description Source: File
       Description Topic: ""
       Enabled: true

@@ -1,7 +1,7 @@
 Third Party Licenses
 ====================
 
-micro-ROS_kobuki_demo includes material from the projects listed below
+micro-ROS_kobuki-demo includes material from the projects listed below
 (Third Party IP). The original copyright notice and the license under
 which we received such Third Party IP, are set forth below.
 
@@ -18,16 +18,6 @@ Version:   0.7.6
 URL:       https://github.com/yujinrobot/kobuki/tree/0.7.6/kobuki_description
 License:   3-Clause BSD License
 Copyright: Copyright © 2018, Yujin Robot 
-
-
-The simple keyboard teleop package is basically a port of the
-teleop_twist_keyboard package to ROS 2, with small improvements.
-
-Name:      teleop_twist_keyboard
-Version:   0.6.2
-URL:       https://github.com/ros-teleop/teleop_twist_keyboard/
-License:   3-Clause BSD License
-Copyright: Copyright © 2018, Graylin Trevor Jay, Austin Hendrix, ...
 
 
 --------------------------------------------------------------------------
@@ -66,39 +56,3 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 
-
---------------------------------------------------------------------------
-License for teleop_twist_keyboard
---------------------------------------------------------------------------
-
-Software License Agreement (BSD License)
-
-Copyright <YEAR> <COPYRIGHT HOLDER>
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
-
-   * Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-   * Redistributions in binary form must reproduce the above
-       copyright notice, this list of conditions and the following
-       disclaimer in the documentation and/or other materials provided
-       with the distribution.
-   * Neither the name of Yujin Robot nor the names of its
-       contributors may be used to endorse or promote products derived
-       from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.

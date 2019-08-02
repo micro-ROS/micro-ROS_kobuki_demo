@@ -9,7 +9,7 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <mesh filename="package://kobuki_description/meshes/main_body.dae" />
+        <mesh filename="package://micro-ros_kobuki-demo_kobuki-description/meshes/main_body.dae" />
       </geometry>
       <origin xyz="0.001 0 0.05199" rpy="0 0 0"/>
     </visual>
@@ -36,7 +36,7 @@
   <link name="wheel_left_link">
     <visual>
       <geometry>
-        <mesh filename="package://kobuki_description/meshes/wheel.dae"/>
+        <mesh filename="package://micro-ros_kobuki-demo_kobuki-description/meshes/wheel.dae"/>
       </geometry>
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </visual>
@@ -63,7 +63,7 @@
   <link name="wheel_right_link">
     <visual>
       <geometry>
-        <mesh filename="package://kobuki_description/meshes/wheel.dae"/>
+        <mesh filename="package://micro-ros_kobuki-demo_kobuki-description/meshes/wheel.dae"/>
       </geometry>
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </visual>
