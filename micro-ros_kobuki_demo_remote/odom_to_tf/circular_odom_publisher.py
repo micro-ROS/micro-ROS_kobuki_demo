@@ -21,16 +21,16 @@ from rclpy.clock import Clock
 from rclpy.node import Node
 from geometry_msgs.msg import Vector3
 
-class CircleOdomPublisher(Node):
+class CircularOdomPublisher(Node):
 
     def __init__(self):
-        super().__init__('circle_odom_publisher')
+        super().__init__('circular_odom_publisher')
 
         self.pub_robot_pose = self.create_publisher(Vector3, "/robot_pose", QoSProfile(depth=10))
 
         self.angle = 0.0
 
-        self.circle_timer = self.create_timer(0.05, self.timer_callback)
+        self.circular_timer = self.create_timer(0.05, self.timer_callback)
 
 
     def timer_callback(self):
@@ -47,7 +47,7 @@ class CircleOdomPublisher(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    node = CircleOdomPublisher()
+    node = CircularOdomPublisher()
 
     rclpy.spin(node)
 

@@ -26,7 +26,9 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/config/', ['config/joy.params',
                                                 'config/kobuki.rviz']),
-        ('share/' + package_name + '/launch/', ['launch/remote.launch.py']),
+        ('share/' + package_name + '/launch/', ['launch/remote_without_control.launch.py', 
+                                                'launch/remote_teleop_joy.launch.py', 
+                                                'launch/remote_simulate_circular_odom.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -46,7 +48,7 @@ setup(
     entry_points={
         'console_scripts': [
             'odom_to_tf = odom_to_tf.odom_to_tf:main',
-            'circle_odom_publisher = odom_to_tf.circle_odom_publisher:main',
+            'circular_odom_publisher = odom_to_tf.circular_odom_publisher:main',
         ],
     },
 )

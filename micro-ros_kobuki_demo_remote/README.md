@@ -8,4 +8,4 @@ In detail, it starts a robot_state_publisher and rviz2 (with the UDRF from [micr
 
 This ROS 2 package also provides the odom_to_tf node (implemented in Python) to to translate the odometry data received via micro-ROS from the Olimex board to TF.
 
-In addition, it contains the circle_odom_publisher node to simulate a circular driving Kobuki.
+In addition, it contains the circular_odom_publisher node to simulate a circular driving Kobuki.

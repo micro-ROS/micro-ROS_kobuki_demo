@@ -17,38 +17,32 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    urdf = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_robot-description'),
-                        'urdf', 'kobuki.urdf')
-
-    rviz_config = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_remote'),
-                               'config', 'kobuki.rviz')
-
     joy_params = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_remote'),
                               'config', 'joy.params')
 
-    return LaunchDescription([
-        Node(
-            package='robot_state_publisher',
-            node_executable='robot_state_publisher',
-            output='screen', arguments=[urdf]),
+    base_description = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            get_package_share_directory(
+                'micro-ros_kobuki_demo_remote') + '/launch/remote_without_control.launch.py'))
+
+    description = LaunchDescription()
+    description.add_action(base_description)
+
+    description.add_action(
         Node(
             package='joy',
             node_executable='joy_node',
-            output='screen', arguments=['__params:=' + joy_params]),
+            output='screen', arguments=['__params:=' + joy_params]))
+    description.add_action(
         Node(
             package='teleop_twist_joy',
             node_executable='teleop_node',
-            output='screen', arguments=['__params:=' + joy_params]),
-        Node(
-            package='micro-ros_kobuki_demo_remote',
-            node_executable='odom_to_tf',
-            output='screen'),
-        Node(
-            package='rviz2',
-            node_executable='rviz2',
-            arguments=['-d', rviz_config])
-])
+            output='screen', arguments=['__params:=' + joy_params]))
+
+    return description
