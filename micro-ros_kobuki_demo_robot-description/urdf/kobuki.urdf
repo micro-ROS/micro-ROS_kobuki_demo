@@ -28,6 +28,20 @@
     </inertial>
   </link>
 
+  <joint name="olimex_board_joint" type="fixed">
+   <origin xyz="-0.03 0.071 0.09" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="olimex_board" />
+  </joint>
+  <link name="olimex_board">
+   <visual>
+      <geometry>
+        <mesh filename="package://micro-ros_kobuki_demo_robot-description/meshes/olimex_board.dae" scale="0.5 0.5 0.5" />
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+   </visual>
+  </link>
+
   <joint name="wheel_left_joint" type="fixed">
     <parent link="base_link"/>
     <child link="wheel_left_link"/>
