@@ -36,7 +36,7 @@
   <link name="olimex_board">
    <visual>
       <geometry>
-        <mesh filename="package://micro-ros_kobuki_demo_robot-description/meshes/olimex_board.dae" scale="0.5 0.5 0.5" />
+        <mesh filename="package://micro-ros_kobuki_demo_robot-description/meshes/olimex_board.dae" />
       </geometry>
       <origin xyz="0 0 0" rpy="0 0 1.5708"/>
    </visual>
