@@ -8,9 +8,9 @@ The basic idea and working principle is as follows: Instead of the typical lapto
 
 In detail, this repository contains the following ROS 2 and micro-ROS packages:
 
-* [micro-ros_kobuki_demo_remote](micro-ros_kobuki_demo_remote/) provides a launch file to start rviz2, robot_state_publisher and the odom_to_tf node.
-* [micro-ros_kobuki_demo_robot-description](micro-ros_kobuki_demo_robot-description/) provides the URDF and meshes and textures for the Kobuki.
-* _The port of the [thin_kobuki driver](https://github.com/Lab-RoCoCo/thin_drivers/blob/master/thin_kobuki/) to micro-ROS is not yet integrated in this repository but can be found at [https://github.com/microROS/apps/tree/drive_base/examples/kobuki](https://github.com/microROS/apps/tree/drive_base/examples/kobuki)._
+* [micro-ros_kobuki_demo_remote](micro-ros_kobuki_demo_remote/) provides launch files to start teleop_twist_joy, rviz2, robot_state_publisher and the odom_to_tf node.
+* [micro-ros_kobuki_demo_robot-description](micro-ros_kobuki_demo_robot-description/) provides the URDF and meshes and textures for the Kobuki as well as the Olimex board.
+* _The port of the [thin_kobuki driver](https://github.com/Lab-RoCoCo/thin_drivers/blob/master/thin_kobuki/) to micro-ROS is located in a separate repository at [https://github.com/micro-ROS/apps/tree/kobuki_rcl_port/examples/kobuki](https://github.com/micro-ROS/apps/tree/kobuki_rcl_port/examples/kobuki)._
 
 Technical information on these packages is given in the README.md files in the corresponding subfolders.
 
@@ -37,4 +37,3 @@ The colcon_test tool is used for quality assurances, which includes cpplint, unc
 Please notice the following issues/limitations:
 
 * Currently, the demo does not use the standard ROS 2 odometry message types but shorter types due to issues in the middleware.
-* When exiting the simple_keyboard_teleop using `e`, an assertion error is thrown.
