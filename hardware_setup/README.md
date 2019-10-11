@@ -25,10 +25,14 @@ WORK IN PROGRESS
     * DC barrel jack 2mm for 6.3mm jack, positive on pin
     
 
-## Relevant Datasheets
+## Relevant Datasheets / Documentation
+
+This tutorial is intended to be self-contained, but if you're interested in background, or find a problem, the following references might helpful.
 
 ### For the demo hardware
 
+ * Kobuki ("Turtlebot 2") Robot
+    * [User Guide with parallel port pinout](https://docs.google.com/document/d/15k7UBnYY_GPmKzQCjzRGCW-4dIP7zl_R_7tWPLM0zKI/edit#bookmark=id.jso1h9boryth)
  * Olimex STM32-E407
     * [Olimex STM32-E407 User Guide](https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf)
     * [UEXT pinout](https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf#15)
@@ -46,6 +50,25 @@ WORK IN PROGRESS
 
 ## Wiring
 
-|  Source         | SName | Pin | Meaning | Dest | Dest Pin |
-|-----------------|-------|-----|---------|------|----------|
-| Kobuki Parallel | 
+This is how the result of wiring looks:
+
+![](hardware_overview.jpg)
+
+### Locations
+ * *parallel* is the the Kobuki parallel port
+ * *UEXT* is the extension connector on the Olimex STM32-E407 board
+ * *BOOT* is UASRT3 on the Olimex board
+ * *PG* is the PG3 pin row on the Olimex board
+ * *ESP32* is the ESP32
+
+Here I have marked these on the boards:
+
+TODO: Add PG marker once we have the board soldered right.
+
+![](connections_mcus.jpg)
+
+
+
+|  Source         | SName | Pin | Meaning | Dest   | Dest Pin |
+|-----------------|-------|-----|---------|--------|----------|
+| Kobuki Parallel | RX    | 1   | Serial  | Olimex UEXT | 
