@@ -1,6 +1,8 @@
 # Hardware setup for the Kobuki demo
 
-WORK IN PROGRESS
+### ChangeLog
+
+ * 11th October 2019: Documented basic setup, RTS/CTS still missing.
 
 ## Parts
 
@@ -19,10 +21,10 @@ WORK IN PROGRESS
  * Serial cable between Kobuki base and Olimex board
     * DB25 male header
     * 3 wires
-    * TODO: add 
+    * 
  * Power cable from Kobuki to Olimex board
     * Molex 43025-0208 connector
-    * DC barrel jack 2mm for 6.3mm jack, positive on pin
+    * DC barrel jack for 2mm pin in 6.3mm hole, positive on pin
     
 
 ## Relevant Datasheets / Documentation
@@ -39,7 +41,7 @@ This tutorial is intended to be self-contained, but if you're interested in back
     * [PD pinout](https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf#18)
  * ESP32 (used for transparent WiFi)
    * [ESP32 AT Firmware Download](https://www.espressif.com/en/support/download/at)
-   * [ESP32 Pinout Reference](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)
+   * [ESP32 Pinout Reference](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/) Note that in the photos, we have an ESP32-DEVKIT v1 with 36 GPIOs
    * [Source for ESP32 AT Firmware](https://github.com/espressif/esp-at)
    * [ESP32 Getting Started Guide with Pinouts](https://github.com/espressif/esp-at/blob/master/docs/ESP_AT_Get_Started.md)
 
@@ -57,7 +59,7 @@ This is how the result of wiring looks:
 ### Locations
  * *parallel* is the the Kobuki parallel port
  * *UEXT* is the extension connector on the Olimex STM32-E407 board
- * *BOOT* is UASRT3 on the Olimex board
+ * *BOOT* is USART3 on the Olimex board
  * *PG* is the PG3 pin row on the Olimex board
  * *ESP32* is the ESP32
 
@@ -68,7 +70,12 @@ TODO: Add PG marker once we have the board soldered right.
 ![](connections_mcus.jpg)
 
 
-
-|  Source         | SName | Pin | Meaning | Dest   | Dest Pin |
-|-----------------|-------|-----|---------|--------|----------|
-| Kobuki Parallel | RX    | 1   | Serial  | Olimex UEXT | 
+|  Source  | SName  | Pin | Meaning | Dest | DName | Dest Pin |
+|----------|--------|-----|---------|------|-------|----------|
+| Parallel | GND    | 14  | Ground  | UEXT | GND   | 2        |
+| Parallel | RX     | 1   | Serial  | UEXT | TX    | 3        |
+| Parallel | TX     | 2   | Serial  | UEXT | TX    | 4        |
+| ESP32    | GPIO17 |     | Serial  | BOOT | TX    | 1        | 
+| ESP32    | GPIO16 |     | Serial  | BOOT | RX    | 2        | 
+| ESP32    | GND    |     | Ground  | BOOT | GND   | 3        | 
+| ESP32    | 3v3    |     | Power   | BOOT | 3V3   | 4        |
