@@ -32,9 +32,9 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     author='Pablo Garrido',
-    author_email='pgarrido@eprosima.com',
+    author_email='pablogarrido@eprosima.com',
     maintainer='Pablo Garrido',
-    maintainer_email='pgarrido@eprosima.com',
+    maintainer_email='pablogarrido@eprosima.com',
     keywords=['micro-ROS', 'Crazyflie', 'demo'],
     classifiers=[
         'Intended Audience :: Developers',
