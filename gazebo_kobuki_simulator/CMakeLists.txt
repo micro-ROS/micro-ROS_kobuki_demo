@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(gazebo_kobuki_plugin)
+project(gazebo_kobuki_simulator)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)

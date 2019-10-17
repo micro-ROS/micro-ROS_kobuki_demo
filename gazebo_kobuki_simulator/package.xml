@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>gazebo_kobuki_plugin</name>
+  <name>gazebo_kobuki_simulator</name>
   <version>3.3.1</version>
   <description>
   Gazebo + Kobuki
