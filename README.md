@@ -1,39 +1,126 @@
-# The micro-ROS_kobuki_demo repository
+# The micro-ROS crazyflie demo repository
 
-This repository provides a demo of micro-ROS (and in particular its client library features) based on a [Kobuki (Turtlebot 2)](http://kobuki.yujinrobot.com/about2/) and an [Olimex STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware).
 
-The basic idea and working principle is as follows: Instead of the typical laptop running ROS, the Kobuki is equipped with a STM32 F4 microcontroller only. This STM32 F4 runs the micro-ROS stack and a port of the [thin_kobuki driver](https://github.com/Lab-RoCoCo/thin_drivers/blob/master/thin_kobuki/), which interacts with the robot's firmware (which runs on a built-in microcontroller). The STM32 F4 communicates the sensor data via DDS-XRCE to a remote laptop running a standard ROS 2 stack, the micro-ROS agent and rviz. At the same time, using the other direction of communication, the Kobuki can be remote-controlled.
+## Dependecies
 
-![Illustration of idea and working principle](README_idea.png)
+```
+sudo apt update && sudo apt install curl wget libogre-1.9-dev
+```
 
-In detail, this repository contains the following ROS 2 and micro-ROS packages:
+## Installation
 
-* [micro-ros_kobuki_demo_remote](micro-ros_kobuki_demo_remote/) provides launch files to start teleop_twist_joy, rviz2, robot_state_publisher and the odom_to_tf node.
-* [micro-ros_kobuki_demo_robot-description](micro-ros_kobuki_demo_robot-description/) provides the URDF and meshes and textures for the Kobuki as well as the Olimex board.
-* _The port of the [thin_kobuki driver](https://github.com/Lab-RoCoCo/thin_drivers/blob/master/thin_kobuki/) to micro-ROS is located in a separate repository at [https://github.com/micro-ROS/apps/tree/kobuki_rcl_port/examples/kobuki](https://github.com/micro-ROS/apps/tree/kobuki_rcl_port/examples/kobuki)._
+1. Make sure you have an ROS2 Dashing installation.
+2. Create a workspace folder for the demo:
 
-Technical information on these packages is given in the README.md files in the corresponding subfolders.
+```
+mkdir -p crazyflie_demo/src
+cd crazyflie_demo
+```
 
-## Purpose of the project
+3. Clone this repo:
+```
+git clone --single-branch --branch crazyflie_demo https://github.com/micro-ROS/micro-ROS_kobuki_demo src
+```
 
-The software is not ready for production use. It has neither been developed nor tested for a specific use case. However, the license conditions of the applicable Open Source licenses allow you to adapt the software to your needs. Before using it in a safety relevant setting, make sure that the software fulfills your requirements and adjust it according to any applicable safety standards (e.g. ISO 26262).
+4. [Install Gazebo](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install#InstallGazebousingUbuntupackages). Recommended procedure:
+```
+curl -sSL http://get.gazebosim.org | sh
+```
 
-## Requirements, how to build, test, install, use, etc
+5. [Install gazebo_ros_pkgs (ROS 2)](http://gazebosim.org/tutorials?tut=ros2_installing&cat=connect_ros). Recommended procedure:
+```
+source /opt/ros/dashing/setup.bash
+wget https://bitbucket.org/api/2.0/snippets/chapulina/geRKyA/f02dcd15c2c3b83b2d6aac00afe281162800da74/files/ros2.yaml
+vcs import src < ros2.yaml
+rosdep update && rosdep install --from-paths src --ignore-src -r -y
+rm ros2.yaml
+```
 
-Clone the repository into a ROS workspace and build it using [colcon](https://colcon.readthedocs.io/).
+6. Compile the project:
+```
+source /opt/ros/dashing/setup.bash
+rosdep update && rosdep install --from-paths src --ignore-src -r -y
+colcon build --symlink-install
+```
 
-## License
+7. *OPTIONAL* - [Install MicroXCRE-DDS](https://micro-xrce-dds.readthedocs.io/en/latest/installation.html). Recommended procedure:
 
-micro-ROS_kobuki_demo is open-sourced under the Apache-2.0 license. See the [LICENSE](LICENSE) file for details.
+```
+git clone https://github.com/eProsima/Micro-XRCE-DDS.git
+cd Micro-XRCE-DDS
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+```
 
-For a list of other open source components included in micro-ROS_kobuki_demo, see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
+8. *OPTIONAL* - Compile MicroXRCE Kobuki Twist keyboard controller:
 
-## Quality assurance
+```
+cd kobuki_twist_keyboard_controller
+gcc main.c Twist.c Vector3.c -lmicrocdr -lmicroxrcedds_client -o kobuki_twist_keyboard_controller
+```
 
-The colcon_test tool is used for quality assurances, which includes cpplint, uncrustify, flake8, xmllint and various other tools.
+8. *OPTIONAL* - Compile MicroXRCE Crazyflie Attitude keyboard simulator:
 
-## Known issues/limitations
+```
+cd crazyflie_attitude_keyboard_controller
+gcc main.c Vector3.c -lmicrocdr -lmicroxrcedds_client -o crazyflie_attitude_keyboard_controller
+```
 
-Please notice the following issues/limitations:
+## Demos
 
-* Currently, the demo does not use the standard ROS 2 odometry message types but shorter types due to issues in the middleware.
+### Running Kobuki TurtleBot 2 RVIZ Visualizer
+```
+cd crazyflie_demo
+source /opt/ros/dashing/setup.bash
+source install/local_setup.bash
+ros2 launch micro-ros_kobuki_demo_remote remote_without_control.launch.py
+```
+
+### Running Crazyflie 2 RVIZ Visualizer
+```
+cd crazyflie_demo
+source /opt/ros/dashing/setup.bash
+source install/local_setup.bash
+ros2 launch micro-ros_crazyflie_demo_remote remote_without_control.launch.py
+```
+
+### Running MicroXRCE Kobuki TurtleBot 2 Gazebo Simulator
+```
+cd crazyflie_demo
+source /opt/ros/dashing/setup.bash
+source install/local_setup.bash
+gazebo gazebo_kobuki_simulator/worlds/gazebo_ros_kobuki.world
+```
+
+### Running MicroXRCE Kobuki Twist keyboard controller
+
+Terminal 1:
+```
+MicroXRCEAgent udp --port 8888
+```
+
+Terminal 2:
+```
+cd kobuki_twist_keyboard_controller
+./kobuki_twist_keyboard_controller 127.0.0.1 8888
+```
+
+### Running MicroXRCE Crazyflie Attitude keyboard simulator
+
+Terminal 1:
+```
+MicroXRCEAgent udp --port 8888
+```
+
+Terminal 2:
+```
+cd crazyflie_attitude_keyboard_controller
+./crazyflie_attitude_keyboard_controller 127.0.0.1 8888
+```
+
+
+
+DOCKER
+xhost +
