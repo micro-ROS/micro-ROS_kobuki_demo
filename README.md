@@ -4,7 +4,7 @@
 ## Dependecies
 
 ```
-sudo apt update && sudo apt install curl wget libogre-1.9-dev
+sudo apt update && sudo apt install curl wget
 ```
 
 ## Installation
