@@ -21,39 +21,21 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    urdfkobuki = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_robot-description'),
-                        'urdf', 'kobuki.urdf')
-    
-    urdfcrazyfie = os.path.join(get_package_share_directory('crazyflie_description'),
+    urdfcrazyfie = os.path.join(get_package_share_directory('micro-ros_crazyflie_demo_robot-description'),
                     'urdf', 'crazyflie2.urdf.xacro')
-
-    rviz_config_kobuki = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_remote'),
-                               'config', 'kobuki.rviz')
     
-    rviz_config_crazyflie = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_remote'),
+    rviz_config_crazyflie = os.path.join(get_package_share_directory('micro-ros_crazyflie_demo_remote'),
                                'config', 'crazyflie.rviz')
     print(urdfcrazyfie)
     return LaunchDescription([
         Node(
             package='robot_state_publisher',
             node_executable='robot_state_publisher',
-            output='screen', arguments=[urdfkobuki]),
-        Node(
-            package='robot_state_publisher',
-            node_executable='robot_state_publisher',
             output='screen', arguments=[urdfcrazyfie]),
         Node(
-            package='micro-ros_kobuki_demo_remote',
-            node_executable='odom_to_tf',
-            output='screen'),
-        Node(
-            package='micro-ros_kobuki_demo_remote',
+            package='micro-ros_crazyflie_demo_remote',
             node_executable='attitude_to_vel',
             output='screen'),
-        Node(
-            package='rviz2',
-            node_executable='rviz2',
-            arguments=['-d', rviz_config_kobuki]),
         Node(
             package='rviz2',
             node_executable='rviz2',
