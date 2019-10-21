@@ -22,7 +22,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     urdfcrazyflie = os.path.join(get_package_share_directory('micro-ros_crazyflie_demo_robot-description'),
-                    'urdf', 'crazyflie2.urdf.xacro')
+                    'urdf', 'crazyflie2.xacro')
     
     rviz_config_crazyflie = os.path.join(get_package_share_directory('micro-ros_crazyflie_demo_remote'),
                                'config', 'crazyflie.rviz')
