@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "Vector3.h"
+#include "Point32.h"
 
 #include <uxr/client/client.h>
 #include <ucdr/microcdr.h>
@@ -85,7 +85,7 @@ int main(int args, char** argv)
     const char* topic_xml = "<dds>"
                                 "<topic>"
                                     "<name>rt/drone/robot_pose</name>"
-                                    "<dataType>geometry_msgs::msg::dds_::Vector3_</dataType>"
+                                    "<dataType>geometry_msgs::msg::dds_::Point32_</dataType>"
                                 "</topic>"
                             "</dds>";
     uint16_t topic_req = uxr_buffer_create_topic_xml(&session, reliable_out, topic_id, participant_id, topic_xml, UXR_REPLACE);
@@ -100,7 +100,7 @@ int main(int args, char** argv)
                                          "<topic>"
                                              "<kind>NO_KEY</kind>"
                                              "<name>rt/drone/robot_pose</name>"
-                                            "<dataType>geometry_msgs::msg::dds_::Vector3_</dataType>"
+                                            "<dataType>geometry_msgs::msg::dds_::Point32_</dataType>"
                                          "</topic>"
                                      "</data_writer>"
                                  "</dds>";
@@ -150,14 +150,14 @@ int main(int args, char** argv)
 
         if (num_readable == 0) {
             // SEND COMMAND
-            Vector3 cmd = {pitch,roll,yaw};
+            Point32 cmd = {pitch,roll,yaw};
 
             ucdrBuffer ub;
-            uint32_t topic_size = Vector3_size_of_topic(&cmd,0);
+            uint32_t topic_size = Point32_size_of_topic(&cmd,0);
             uxr_prepare_output_stream(&session, reliable_out, datawriter_id, &ub, topic_size);
-            Vector3_serialize_topic(&ub,&cmd);
+            Point32_serialize_topic(&ub,&cmd);
 
-            printf("\rSend Vector3 on rt/drone/robot_pose: pitch: %f, roll: %f, yaw: %f \n", pitch, roll, yaw);
+            printf("\rSend Point32 on rt/drone/robot_pose: pitch: %f, roll: %f, yaw: %f \n", pitch, roll, yaw);
 
             connected = uxr_run_session_time(&session, 50);
         } else {

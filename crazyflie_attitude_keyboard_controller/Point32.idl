@@ -1,0 +1,8 @@
+
+    struct Point32 {
+      float x;
+
+      float y;
+
+      float z;
+    };
