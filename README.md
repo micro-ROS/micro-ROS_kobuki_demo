@@ -91,7 +91,7 @@ ros2 launch micro-ros_crazyflie_demo_remote remote_without_control.launch.py
 cd crazyflie_demo
 source /opt/ros/dashing/setup.bash
 source install/local_setup.bash
-gazebo gazebo_kobuki_simulator/worlds/gazebo_ros_kobuki.world
+gazebo src/gazebo_kobuki_simulator/worlds/gazebo_ros_kobuki.world
 ```
 
 ### Running MicroXRCE Kobuki Twist keyboard controller
@@ -122,5 +122,20 @@ cd crazyflie_attitude_keyboard_controller
 
 
 
-DOCKER
+## Docker
+
+Make sure you have the X Server enabled for any connection:
+```
 xhost +
+```
+
+Build the image:
+```
+cd docker
+docker build -t democrazyflie .
+```
+
+Run the image:
+```
+sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --net=host --privileged -it  -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix  --name=democrazyflie democrazyflie
+```
