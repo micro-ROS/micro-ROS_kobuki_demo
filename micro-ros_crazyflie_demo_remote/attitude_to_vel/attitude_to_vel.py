@@ -20,6 +20,7 @@ from rclpy.clock import Clock
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
 from tf2_msgs.msg import TFMessage
+from geometry_msgs.msg import Point32
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import Quaternion
 from geometry_msgs.msg import TransformStamped
@@ -33,14 +34,10 @@ class AttitudeToVel(Node):
     def __init__(self):
         super().__init__('attitude_to_vel')
 
-        self.last_position = Vector3()
-        self.last_orientation = Quaternion()
-        self.last_orientation.x = 0.0
-        self.last_orientation.y = 0.0
-        self.last_orientation.z = 0.0
-        self.last_orientation.w = 1.0
+        self.lastPose = Point32()
 
-        self.sub_drone_att = self.create_subscription(Vector3, "/drone/robot_pose", self.drone_att_callback, QoSProfile(reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT))
+        self.sub_drone_att = self.create_subscription(Point32, "/drone/robot_pose", self.drone_att_callback, QoSProfile(reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT))
+        self.sub_drone_att = self.create_subscription(Point32, "/drone/odometry", self.drone_odom_callback, QoSProfile(reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT))
         self.pub_tf = self.create_publisher(TFMessage, "/tf", QoSProfile(depth=10))
         self.pub_vel = self.create_publisher(Twist, "/cmd_vel", QoSProfile(depth=10))
 
@@ -54,17 +51,17 @@ class AttitudeToVel(Node):
 
     
     def drone_att_callback(self, rcv):
+        self.lastPose = rcv
 
         rcv.x *= math.pi/180.0
         rcv.y *= math.pi/180.0
         rcv.z *= math.pi/180.0
 
-
         # Publish pose for rviz
         msg = TransformStamped()
         msg.header.frame_id = "/map"
         msg.header.stamp = Clock().now().to_msg()
-        msg.child_frame_id = "/base_footprint_drone"
+        msg.child_frame_id = "/base_footprint_drone_attitude"
 
         quat = self.euler_to_quaternion(rcv.x,rcv.y,rcv.z)
         orientation = Quaternion()
@@ -77,13 +74,43 @@ class AttitudeToVel(Node):
         tfmsg.transforms = [msg]
         self.pub_tf.publish(tfmsg)
 
-        print(rcv.x,rcv.y,rcv.z)
-
         # Publish velocity
         msg = Twist()
         msg.linear.x = rcv.x
         msg.angular.z = rcv.y
         self.pub_vel.publish(msg)
+
+    def drone_odom_callback(self, rcv):
+
+        rcv.x *= math.pi/180.0
+        rcv.y *= math.pi/180.0
+        rcv.z *= math.pi/180.0
+
+        # Publish pose for rviz
+        msg = TransformStamped()
+        msg.header.frame_id = "/map"
+        msg.header.stamp = Clock().now().to_msg()
+        msg.child_frame_id = "/base_footprint_drone"
+
+        quat = self.euler_to_quaternion(self.lastPose.x,self.lastPose.y,self.lastPose.z)
+        orientation = Quaternion()
+        orientation.x = quat[0]
+        orientation.y = quat[1]
+        orientation.z = quat[2]
+        orientation.w = quat[3]
+        msg.transform.rotation = orientation
+
+        position = Vector3()
+        position.x = rcv.x
+        position.y = rcv.y
+        position.z = rcv.z
+        msg.transform.translation = position
+
+        tfmsg = TFMessage()
+        tfmsg.transforms = [msg]
+        self.pub_tf.publish(tfmsg)
+
+        print(rcv.x,rcv.y,rcv.z)
 
 
 def main(args=None):

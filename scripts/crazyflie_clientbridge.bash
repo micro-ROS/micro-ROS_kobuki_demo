@@ -1,3 +1,8 @@
+source /opt/ros/dashing/setup.bash
 python3 /crazyflie-clients-python/bin/cfclient &> /dev/null &
+while [ ! -f /used_serialport.txt ] ;
+do
+      sleep 0.1
+done
 
-MicroXRCEAgent serial --dev $(cat used_serialport.txt) & 
+MicroXRCEAgent serial --dev $(cat used_serialport.txt) &> /dev/null < /dev/null & 
