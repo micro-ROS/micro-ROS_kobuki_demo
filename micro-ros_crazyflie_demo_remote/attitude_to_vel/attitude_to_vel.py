@@ -42,9 +42,9 @@ class AttitudeToVel(Node):
 
         self.sub_drone_att = self.create_subscription(Point32, "/drone/robot_pose", self.drone_att_callback, QoSProfile(reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT))
         self.sub_drone_pos = self.create_subscription(Point32, "/drone/odometry", self.drone_odom_callback, QoSProfile(reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT))
-        self.pub_tf = self.create_publisher(TFMessage, "/tf", QoSProfile(depth=10))
-        self.pub_vel = self.create_publisher(Twist, "/cmd_vel", QoSProfile(depth=10))
-        self.pub_posearray = self.create_publisher(Path, "/drone/path", QoSProfile(depth=10))
+        self.pub_tf = self.create_publisher(TFMessage, "/tf", QoSProfile(depth=1))
+        self.pub_vel = self.create_publisher(Twist, "/cmd_vel", QoSProfile(depth=1))
+        self.pub_posearray = self.create_publisher(Path, "/drone/path", QoSProfile(depth=1))
 
     def euler_to_quaternion(self, roll, pitch, yaw):
 

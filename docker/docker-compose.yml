@@ -1,7 +1,7 @@
 version: '3'
 services:
   crazyflie_client:
-    build: .
+    image: democrazyflie
     entrypoint: /bin/bash /crazyflie_demo/src/scripts/crazyflie_clientbridge.bash
     network_mode: "host"
     privileged: true
@@ -12,7 +12,7 @@ services:
       DISPLAY: unix:0
 
   kobuki_gazebo:
-    build: .
+    image: democrazyflie
     entrypoint: /bin/bash /crazyflie_demo/src/scripts/kobukigazebo.bash
     network_mode: "host"
     privileged: true
@@ -20,29 +20,51 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
       DISPLAY: unix:0
+    depends_on:
+      - attitude_to_vel
     
-  kobuki_agent:
-    image: microros/micro-ros-agent
-    command: udp 8888 &> /dev/null < /dev/null
+  # kobuki_agent:
+  #   image: microros/micro-ros-agent
+  #   entrypoint: bash -c "source "/opt/ros/crystal/setup.bash" && source "/uros_ws/src/install/local_setup.bash" && ros2 run micro_ros_agent micro_ros_agent udp 8989 &> /dev/null < /dev/null"
+  #   network_mode: "host"
+  #   privileged: true
+
+  attitude_to_vel:
+    image: democrazyflie
+    entrypoint: /bin/bash /crazyflie_demo/src/scripts/attitude_to_vel.bash
     network_mode: "host"
     privileged: true
 
-  crazyflie_rviz:
-    build: .
-    entrypoint: /bin/bash /crazyflie_demo/src/scripts/crazyflierviz.bash
-    network_mode: "host"
-    privileged: true
-    volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
-    environment:
-      DISPLAY: unix:0
+  # crazyflie_attitude_rviz:
+  #   image: democrazyflie
+  #   entrypoint: /bin/bash /crazyflie_demo/src/scripts/crazyflierviz_attitude.bash
+  #   network_mode: "host"
+  #   privileged: true
+  #   volumes:
+  #     - /tmp/.X11-unix:/tmp/.X11-unix
+  #   environment:
+  #     DISPLAY: unix:0
 
-  kobuki_rviz:
-    build: .
-    entrypoint: /bin/bash /crazyflie_demo/src/scripts/kobukirviz.bash
-    network_mode: "host"
-    privileged: true
-    volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
-    environment:
-      DISPLAY: unix:0
+  crazyflie_position_rviz:
+      image: democrazyflie
+      entrypoint: /bin/bash /crazyflie_demo/src/scripts/crazyflierviz_position.bash
+      network_mode: "host"
+      privileged: true
+      volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix
+      environment:
+        DISPLAY: unix:0
+      depends_on:
+        - kobuki_gazebo
+      
+  # kobuki_rviz:
+  #   image: democrazyflie
+  #   entrypoint: /bin/bash /crazyflie_demo/src/scripts/kobukirviz.bash
+  #   network_mode: "host"
+  #   privileged: true
+  #   volumes:
+  #     - /tmp/.X11-unix:/tmp/.X11-unix
+  #   environment:
+  #     DISPLAY: unix:0
+  #   depends_on:
+  #     - kobuki_gazebo
