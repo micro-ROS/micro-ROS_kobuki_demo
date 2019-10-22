@@ -5,7 +5,7 @@ RUN apt update && apt install -y curl wget ros-dashing-desktop
 WORKDIR /
 RUN git clone https://github.com/eProsima/Micro-XRCE-DDS.git
 WORKDIR /Micro-XRCE-DDS
-RUN mkdir build && cd build && cmake .. && make && make install
+RUN . /opt/ros/dashing/setup.sh && mkdir build && cd build && cmake .. && make && make install && ldconfig /usr/local/lib/
 
 RUN curl -sSL http://get.gazebosim.org | sh
 

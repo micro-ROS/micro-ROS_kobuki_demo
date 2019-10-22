@@ -1,0 +1,48 @@
+version: '3'
+services:
+  crazyflie_client:
+    image: democrazyflie
+    entrypoint: /bin/bash /crazyflie_demo/src/scripts/crazyflie_clientbridge.bash
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev:/dev
+    environment:
+      DISPLAY: unix:0
+
+  kobuki_gazebo:
+    image: democrazyflie
+    entrypoint: /bin/bash /crazyflie_demo/src/scripts/kobukigazebo.bash
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      DISPLAY: unix:0
+    
+  kobuki_agent:
+    image: microros/micro-ros-agent
+    command: udp 8888 &> /dev/null < /dev/null
+    network_mode: "host"
+    privileged: true
+
+  crazyflie_rviz:
+    image: democrazyflie
+    entrypoint: /bin/bash /crazyflie_demo/src/scripts/crazyflierviz.bash
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      DISPLAY: unix:0
+
+  kobuki_rviz:
+    image: democrazyflie
+    entrypoint: /bin/bash /crazyflie_demo/src/scripts/kobukirviz.bash
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      DISPLAY: unix:0
