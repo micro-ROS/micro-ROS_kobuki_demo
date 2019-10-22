@@ -116,22 +116,23 @@ class AttitudeToVel(Node):
         self.pub_tf.publish(tfmsg)
 
         # Publish Rviz Path
-        msg = Path()
-        msg.header.frame_id = "/map"
-        msg.header.stamp = Clock().now().to_msg()
+        msgpath = Path()
+        msgpath.header.frame_id = "/map"
+        msgpath.header.stamp = Clock().now().to_msg()
 
 
         pose = PoseStamped()
         pose.header.frame_id = "/map"
         pose.header.stamp = Clock().now().to_msg()
 
-        pose.point.x = rcv.x
-        pose.point.y = rcv.y
-        pose.point.z = rcv.z
-        self.posearray.append()
+        pose.pose.position.x = rcv.x
+        pose.pose.position.y = rcv.y
+        pose.pose.position.z = rcv.z
 
-        msg.poses = self.posearray
-        self.pub_posearray.publish(msg)
+        self.posearray.append(pose)
+
+        msgpath.poses = self.posearray
+        self.pub_posearray.publish(msgpath)
 
 
 def main(args=None):
