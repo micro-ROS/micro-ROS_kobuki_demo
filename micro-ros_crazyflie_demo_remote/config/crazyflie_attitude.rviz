@@ -48,7 +48,7 @@ Visualization Manager:
     - Alpha: 1
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
-      Description File: ./install/micro-ros_crazyflie_demo_robot-description/share/crazyflie_description/urdf/crazyflie2.urdf.xacro
+      Description File: ./install/micro-ros_crazyflie_demo_robot-description/share/micro-ros_crazyflie_demo_robot-description/urdf/crazyflie2_attitude.xacro
       Description Source: File
       Description Topic: ""
       Enabled: true

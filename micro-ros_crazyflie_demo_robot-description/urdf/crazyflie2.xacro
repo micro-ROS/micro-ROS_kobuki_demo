@@ -18,7 +18,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://crazyflie_description/meshes/crazyflie2.dae"/>
+        <mesh filename="package://micro-ros_crazyflie_demo_robot-description/meshes/crazyflie2.dae"/>
       </geometry>
     </visual>
 
