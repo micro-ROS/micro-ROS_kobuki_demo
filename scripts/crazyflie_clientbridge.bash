@@ -6,4 +6,4 @@ do
       sleep 0.1
 done
 
-MicroXRCEAgent serial --dev $(cat used_serialport.txt)  &> /dev/null < /dev/null & 
+MicroXRCEAgent serial --dev $(cat used_serialport.txt) 
