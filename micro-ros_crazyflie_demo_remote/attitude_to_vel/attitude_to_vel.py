@@ -20,12 +20,15 @@ from rclpy.clock import Clock
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
 from tf2_msgs.msg import TFMessage
+from geometry_msgs.msg import Point
 from geometry_msgs.msg import Point32
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import Quaternion
 from geometry_msgs.msg import TransformStamped
 from geometry_msgs.msg import Pose2D
+from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import Twist
+from nav_msgs.msg import Path
 
 from rclpy.qos import QoSReliabilityPolicy
 
@@ -35,11 +38,13 @@ class AttitudeToVel(Node):
         super().__init__('attitude_to_vel')
 
         self.lastPose = Point32()
+        self.posearray = []
 
         self.sub_drone_att = self.create_subscription(Point32, "/drone/robot_pose", self.drone_att_callback, QoSProfile(reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT))
         self.sub_drone_att = self.create_subscription(Point32, "/drone/odometry", self.drone_odom_callback, QoSProfile(reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT))
         self.pub_tf = self.create_publisher(TFMessage, "/tf", QoSProfile(depth=10))
         self.pub_vel = self.create_publisher(Twist, "/cmd_vel", QoSProfile(depth=10))
+        self.pub_posearray = self.create_publisher(Path, "/cmd_vel", QoSProfile(depth=10))
 
     def euler_to_quaternion(self, roll, pitch, yaw):
 
@@ -110,7 +115,23 @@ class AttitudeToVel(Node):
         tfmsg.transforms = [msg]
         self.pub_tf.publish(tfmsg)
 
-        print(rcv.x,rcv.y,rcv.z)
+        # Publish Rviz Path
+        msg = Path()
+        msg.header.frame_id = "/map"
+        msg.header.stamp = Clock().now().to_msg()
+
+
+        pose = PoseStamped()
+        pose.header.frame_id = "/map"
+        pose.header.stamp = Clock().now().to_msg()
+
+        pose.point.x = rcv.x
+        pose.point.y = rcv.y
+        pose.point.z = rcv.z
+        self.posearray.append()
+
+        msg.poses = self.posearray
+        self.pub_posearray.publish(msg)
 
 
 def main(args=None):
