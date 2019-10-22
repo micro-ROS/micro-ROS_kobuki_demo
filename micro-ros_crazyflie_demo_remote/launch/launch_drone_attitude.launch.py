@@ -21,14 +21,10 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    urdfcrazyflie = os.path.join(get_package_share_directory('micro-ros_crazyflie_demo_robot-description'),
-                    'urdf', 'crazyflie2.xacro')
-
+   
     urdfcrazyflie_attitude = os.path.join(get_package_share_directory('micro-ros_crazyflie_demo_robot-description'),
                     'urdf', 'crazyflie2_attitude.xacro')
     
-    rviz_config_crazyflie = os.path.join(get_package_share_directory('micro-ros_crazyflie_demo_remote'),
-                               'config', 'crazyflie.rviz')
 
     rviz_config_crazyflie_attitude = os.path.join(get_package_share_directory('micro-ros_crazyflie_demo_remote'),
                                'config', 'crazyflie_attitude.rviz')
@@ -37,21 +33,9 @@ def generate_launch_description():
         Node(
             package='robot_state_publisher',
             node_executable='robot_state_publisher',
-            output='screen', arguments=[urdfcrazyflie]),
-        Node(
-            package='robot_state_publisher',
-            node_executable='robot_state_publisher',
             output='screen', arguments=[urdfcrazyflie_attitude]),
         Node(
             package='rviz2',
             node_executable='rviz2',
-            arguments=['-d', rviz_config_crazyflie_attitude])   ,
-        Node(
-            package='micro-ros_crazyflie_demo_remote',
-            node_executable='attitude_to_vel',
-            output='screen'),
-        Node(
-            package='rviz2',
-            node_executable='rviz2',
-            arguments=['-d', rviz_config_crazyflie])    
+            arguments=['-d', rviz_config_crazyflie_attitude])   
 ])
