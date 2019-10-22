@@ -94,6 +94,15 @@ source install/local_setup.bash
 gazebo src/gazebo_kobuki_simulator/worlds/gazebo_ros_kobuki.world
 ```
 
+### Running Crazyflie Client + MicroXRCE Bridge
+```
+python3 /crazyflie-clients-python/bin/cfclient
+```
+### Running Crazyflie MicroXRCE Agent
+```
+MicroXRCEAgent serial --dev $(cat used_serialport.txt)
+```
+
 ### Running MicroXRCE Kobuki Twist keyboard controller
 
 Terminal 1:
@@ -137,5 +146,5 @@ docker build -t democrazyflie .
 
 Run the image:
 ```
-sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --net=host --privileged -it  -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix  --name=democrazyflie democrazyflie
+sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --net=host --privileged -it  -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev:/dev  --name=democrazyflie democrazyflie
 ```
