@@ -148,3 +148,21 @@ Run the image:
 ```
 sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --net=host --privileged -it  -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev:/dev  --name=democrazyflie democrazyflie
 ```
+
+## Run Demo
+
+Turn off the drone
+
+Execute:
+
+```
+sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --net=host --privileged -it  -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev:/dev  --name=democrazyflie democrazyflie
+
+sudo docker exec democrazyflie /bin/bash /crazyflie_demo/src/scripts/attitude_to_vel.bash
+sudo docker exec democrazyflie /bin/bash /crazyflie_demo/src/scripts/crazyflierviz_position.bash
+sudo docker exec democrazyflie /bin/bash /crazyflie_demo/src/scripts/kobukigazebo.bash
+
+sudo docker exec democrazyflie /bin/bash /crazyflie_demo/src/scripts/crazyflie_clientbridge.bash
+```
+
+Turn on the drone and scan radio device, select the correct address and click connect. MicroXRCE Client to Agent communication may take some seconds.
