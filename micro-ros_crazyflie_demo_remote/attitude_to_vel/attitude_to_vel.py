@@ -127,7 +127,7 @@ class AttitudeToVel(Node):
 
         self.posearray.append(pose)
         if len(self.posearray) > 500:
-            pose = pose[1:]
+            self.posearray = self.posearray[1:]
 
         msgpath.poses = self.posearray
         self.pub_posearray.publish(msgpath)
