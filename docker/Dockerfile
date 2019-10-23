@@ -14,8 +14,6 @@ RUN apt update && apt install -y ros-dashing-gazebo-ros-pkgs
 RUN mkdir -p /crazyflie_demo/src
 WORKDIR /crazyflie_demo
 
-RUN echo "asdfadffdssa"
-
 RUN git clone --single-branch --branch crazyflie_demo https://github.com/micro-ROS/micro-ROS_kobuki_demo src 
 
 RUN . /opt/ros/dashing/setup.sh && rosdep update && rosdep install --from-paths src --ignore-src -r -y
