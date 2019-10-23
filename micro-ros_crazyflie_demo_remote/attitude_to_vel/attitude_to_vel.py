@@ -126,6 +126,8 @@ class AttitudeToVel(Node):
         pose.pose.position.z = rcv.z
 
         self.posearray.append(pose)
+        if len(pose) > 500:
+            pose = pose[1:]
 
         msgpath.poses = self.posearray
         self.pub_posearray.publish(msgpath)
