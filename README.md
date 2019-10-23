@@ -43,7 +43,7 @@ rosdep update && rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 ```
 
-7. *OPTIONAL* - [Install MicroXCRE-DDS](https://micro-xrce-dds.readthedocs.io/en/latest/installation.html). Recommended procedure:
+7. [Install MicroXCRE-DDS](https://micro-xrce-dds.readthedocs.io/en/latest/installation.html). Recommended procedure:
 
 ```
 git clone https://github.com/eProsima/Micro-XRCE-DDS.git
