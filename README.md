@@ -178,3 +178,17 @@ sudo docker-compose up keyboard_controller
 ```
 
 Turn on the drone and scan radio device, select the correct address and click connect. MicroXRCE Client to Agent communication may take some seconds.
+
+
+Available containers in docker-compose:
+
+```
+sudo docker-compose up crazyflie_client
+sudo docker-compose up kobuki_gazebo
+sudo docker-compose up attitude_to_vel
+sudo docker-compose up flash_crazyflie
+sudo docker-compose up keyboard_agent
+sudo docker-compose up keyboard_controller
+sudo docker-compose up crazyflie_position_rviz
+sudo docker-compose up kobuki_agent
+```
