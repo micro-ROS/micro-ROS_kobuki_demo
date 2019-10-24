@@ -1,6 +1,8 @@
 FROM ros:dashing
 
-RUN apt update && apt install -y curl wget ros-dashing-desktop
+RUN apt update && apt install -y software-properties-common
+RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa
+RUN apt update && apt install -y curl wget ros-dashing-desktop gcc-arm-embedded dfu-util
 
 WORKDIR /
 RUN git clone https://github.com/eProsima/Micro-XRCE-DDS.git
