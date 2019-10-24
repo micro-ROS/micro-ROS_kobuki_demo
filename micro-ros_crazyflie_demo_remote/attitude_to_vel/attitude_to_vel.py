@@ -69,7 +69,7 @@ class AttitudeToVel(Node):
         msg.header.stamp = Clock().now().to_msg()
         msg.child_frame_id = "/base_footprint_drone_attitude"
 
-        quat = self.euler_to_quaternion(rcv.x,rcv.y,rcv.z)
+        quat = self.euler_to_quaternion(rcv.y,rcv.x,rcv.z)
         orientation = Quaternion()
         orientation.x = quat[0]
         orientation.y = quat[1]
