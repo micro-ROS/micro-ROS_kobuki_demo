@@ -154,24 +154,27 @@ sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --net=hos
 
 ## Run Demo
 
+Make sure you have a compiled Docker image named `democrazyflie`
+
 Turn off the drone.
-
-Run an Micro-ROS agent to connect the Kobuki-Olimex hardware
-
-```
-sudo docker run --net=host --rm -it microros/micro-ros-agent udp 8888
-```
 
 Execute:
 
 ```
-sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --net=host --privileged -it  -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev:/dev  --name=democrazyflie democrazyflie
+cd docker
 
-sudo docker exec -it democrazyflie /bin/bash /crazyflie_demo/src/scripts/attitude_to_vel.bash
-sudo docker exec -it democrazyflie /bin/bash /crazyflie_demo/src/scripts/crazyflierviz_position.bash
-sudo docker exec -it democrazyflie /bin/bash /crazyflie_demo/src/scripts/kobukigazebo.bash
+sudo docker-compose up kobuki_agent
 
-sudo docker exec -it democrazyflie /bin/bash /crazyflie_demo/src/scripts/crazyflie_clientbridge.bash
+sudo docker-compose up attitude_to_vel
+sudo docker-compose up crazyflie_position_rviz
+sudo docker-compose up kobuki_gazebo
+
+#For Crazyflie Attitude controller
+sudo docker-compose up crazyflie_client
+
+#For manual controlling
+sudo docker-compose up keyboard_agent
+sudo docker-compose up keyboard_controller
 ```
 
 Turn on the drone and scan radio device, select the correct address and click connect. MicroXRCE Client to Agent communication may take some seconds.
