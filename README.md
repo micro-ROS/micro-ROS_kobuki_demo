@@ -151,7 +151,13 @@ sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --net=hos
 
 ## Run Demo
 
-Turn off the drone
+Turn off the drone.
+
+Run an Micro-ROS agent to connect the Kobuki-Olimex hardware
+
+```
+sudo docker run --net=host --rm -it microros/micro-ros-agent udp 8888
+```
 
 Execute:
 
