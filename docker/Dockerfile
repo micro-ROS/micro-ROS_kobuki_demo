@@ -5,8 +5,8 @@ RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa
 RUN apt update && apt install -y curl wget ros-dashing-desktop gcc-arm-embedded dfu-util
 
 WORKDIR /
-RUN git clone https://github.com/eProsima/Micro-XRCE-DDS.git
-WORKDIR /Micro-XRCE-DDS
+RUN git clone -b dashing https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+WORKDIR /Micro-XRCE-DDS-Agent
 RUN . /opt/ros/dashing/setup.sh && mkdir build && cd build && cmake .. && make && make install && ldconfig /usr/local/lib/
 
 RUN curl -sSL http://get.gazebosim.org | sh
