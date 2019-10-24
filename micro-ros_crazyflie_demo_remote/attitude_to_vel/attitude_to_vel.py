@@ -56,6 +56,7 @@ class AttitudeToVel(Node):
 
     
     def drone_att_callback(self, rcv):
+        print("POSE: " +  str(rcv))
         self.lastPose = rcv
 
         rcv.x *= math.pi/180.0
@@ -86,6 +87,7 @@ class AttitudeToVel(Node):
         self.pub_vel.publish(msg)
 
     def drone_odom_callback(self, rcv):
+        print("ODOM: " +  str(rcv))
 
         # Publish pose for rviz
         msg = TransformStamped()
