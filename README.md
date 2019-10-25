@@ -175,18 +175,15 @@ Execute:
 cd docker
 
 sudo docker-compose up kobuki_agent
-
 sudo docker-compose up attitude_to_vel
 sudo docker-compose up crazyflie_position_rviz
-
-#For Crazyflie Attitude controller
 sudo docker-compose up crazyflie_client
+sudo docker-compose up kobuki_gazebo
 
-#For manual controlling
+# Optional for manual controlling
 sudo docker-compose up keyboard_agent
 sudo docker-compose up keyboard_controller
 
-sudo docker-compose up kobuki_gazebo
 ```
 
 Turn on the drone and scan radio device, select the correct address and click connect. MicroXRCE Client to Agent communication may take some seconds.
@@ -194,7 +191,7 @@ Turn on the drone and scan radio device, select the correct address and click co
 
 Available containers in docker-compose:
 
-```
+```sh
 sudo docker-compose up crazyflie_client
 sudo docker-compose up kobuki_gazebo
 sudo docker-compose up attitude_to_vel
