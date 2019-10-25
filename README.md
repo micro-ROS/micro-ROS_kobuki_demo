@@ -10,6 +10,17 @@
 sudo apt update && sudo apt install curl wget
 ```
 
+Setup permission for Crazyflie radio.
+
+```
+sudo groupadd plugdev
+sudo usermod -a -G plugdev $USER
+sudo echo SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"1915\", ATTRS{idProduct}==\"7777\", \
+MODE=\"0664\", GROUP=\"plugdev\" > /etc/udev/rules.d/99-crazyradio.rules
+sudo echo SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"0483\", ATTRS{idProduct}==\"5740\", \
+MODE=\"0664\", GROUP=\"plugdev\" > /etc/udev/rules.d/99-crazyflie.rules
+```
+
 ## Installation
 
 1. Make sure you have an ROS2 Dashing installation.
