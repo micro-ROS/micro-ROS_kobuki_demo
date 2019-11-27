@@ -33,9 +33,11 @@ def generate_launch_description():
             node_executable='robot_state_publisher',
             output='screen', arguments=[urdf]),
         Node(
-            package='micro-ros_kobuki_demo_remote',
-            node_executable='odom_to_tf',
-            output='screen'),
+            node_name="base_info_handler",
+            package='base_info_handler',
+            node_executable='base_info_handler',
+            output='screen',
+            parameters=[{'urdf': str(urdf)}]),
         Node(
             package='rviz2',
             node_executable='rviz2',
@@ -44,4 +46,4 @@ def generate_launch_description():
             package='micro_ros_agent',
             node_executable='micro_ros_agent',
             arguments=['udp', '8888']),
-])
+    ])
