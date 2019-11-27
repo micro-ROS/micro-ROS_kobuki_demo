@@ -39,5 +39,9 @@ def generate_launch_description():
         Node(
             package='rviz2',
             node_executable='rviz2',
-            arguments=['-d', rviz_config])
+            arguments=['-d', rviz_config]),
+        Node(
+            package='micro_ros_agent',
+            node_executable='micro_ros_agent',
+            arguments=['udp', '8888']),
 ])

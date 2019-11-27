@@ -16,6 +16,7 @@
   <depend>tf2_ros</depend>
   <depend>geometry_msgs</depend>
   <depend>visualization_msgs</depend>
+  <depend>micro_ros_agent</depend>
   <exec_depend>micro-ros_kobuki_demo_robot-description</exec_depend>
   <exec_depend>teleop_twist_joy</exec_depend>
   <exec_depend>teleop_twist_keyboard</exec_depend>
