@@ -5,7 +5,7 @@ RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa
 RUN apt update && apt install -y curl wget ros-dashing-desktop gcc-arm-embedded dfu-util
 
 WORKDIR /
-RUN git clone -b dashing https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+RUN git clone -b v1.1.4 https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
 WORKDIR /Micro-XRCE-DDS-Agent
 RUN . /opt/ros/dashing/setup.sh && mkdir build && cd build && cmake .. && make && make install && ldconfig /usr/local/lib/
 
