@@ -19,6 +19,10 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
 
+ROS_DISTRO = os.getenv("ROS_DISTRO")
+agent_args = ["udp", "--port", "8888"]
+if ROS_DISTRO == "crystal":
+    agent_args = ["udp", "8888"]
 
 def generate_launch_description():
     urdf = os.path.join(get_package_share_directory('micro-ros_kobuki_demo_robot-description'),
@@ -42,8 +46,8 @@ def generate_launch_description():
             package='rviz2',
             node_executable='rviz2',
             arguments=['-d', rviz_config]),
-        Node(
-            package='micro_ros_agent',
-            node_executable='micro_ros_agent',
-            arguments=['udp', '8888']),
+        #Node(
+        #    package='micro_ros_agent',
+        #    node_executable='micro_ros_agent',
+        #    arguments=agent_args),
     ])

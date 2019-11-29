@@ -38,11 +38,6 @@ def generate_launch_description():
         Node(
             package='joy',
             node_executable='joy_node',
-            output='screen', arguments=['__params:=' + joy_params]))
-    description.add_action(
-        Node(
-            package='teleop_twist_joy',
-            node_executable='teleop_node',
-            output='screen', arguments=['__params:=' + joy_params]))
+            output='screen', arguments=['__params:=' + joy_params]))    
 
     return description
