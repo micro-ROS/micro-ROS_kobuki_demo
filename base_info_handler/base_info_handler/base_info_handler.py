@@ -84,7 +84,7 @@ class BaseInfoHandler(Node):
 
         last_time = rclpy.time.Time().from_msg(self._last_cmd.header.stamp)
         cur_time = rclpy.time.Time().from_msg(msg.header.stamp)        
-        period_elapsed = ((cur_time - last_time).nanoseconds < 90000000)
+        period_elapsed = ((cur_time - last_time).nanoseconds > 90000000)
 
         send_cmd = False
         # always send stop commands when we're moving. otherwise only send when period is elapsed
@@ -93,7 +93,7 @@ class BaseInfoHandler(Node):
                 send_cmd = True
             elif period_elapsed:
                 send_cmd = True
-        elif not cmd_stop or period_elapsed:
+        elif period_elapsed:
             send_cmd = True
 
         if send_cmd:
