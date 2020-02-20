@@ -76,6 +76,9 @@ class BaseInfoHandler(Node):
         cmd_tv = msg.axes[4]
         cmd_rv = msg.axes[3]
         cmd_enable = msg.buttons[5]
+        cmd_turbo = msg.buttons[4]
+
+        max_tv = 0.5 if cmd_turbo else 0.1
 
         if self._last_cmd.translational_velocity != 0.0 or self._last_cmd.rotational_velocity != 0.0:
             in_motion = True
@@ -101,7 +104,7 @@ class BaseInfoHandler(Node):
             trv_cmd = TRVCommand(header=hdr)
             
             # FIXME make magic numbers here configurable
-            trv_cmd.translational_velocity=cmd_tv * 0.8
+            trv_cmd.translational_velocity=cmd_tv * max_tv
             trv_cmd.rotational_velocity=cmd_rv * 2.0
             self._last_cmd = trv_cmd        
         
