@@ -11,7 +11,15 @@ On an abstract level, the following diagram depicts the components used and thei
 
 ![](layout.png)
 
+Note that the two Linux PC's (development and agent) may be the same physical machine, but don't have to be.
+
 The main parts, from the perspective of Micro-ROS, are the robot and the Olimex STM32-E407 board. The WiFi Access-Point and the powerbank are just there to provide wireless networking, since the Olimex board doesn't have integrated WiFi.
+
+On the real robot, the Olimex board is mounted on the top shelf, since we need to access it often. This is shown in the following photograph:
+![](kobuki-olimex.jpg)
+The access point and battery are placed on the bottom shelf. This is shown from the side in the next photograph:
+![](kobuki-side.jpg)
+
 
 ## Part List
 
@@ -44,31 +52,17 @@ This tutorial is intended to be self-contained, but if you're interested in back
  * Olimex STM32-E407
     * [Olimex STM32-E407 User Guide](https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf)
     * [UEXT pinout](https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf#15)
-    * [PD pinout](https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf#18)
+    * [PD pinout](https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf#18)Start with 
 
-### For debug tools
-
- * [FTDI TTl232-3v3 cable pinout](https://www.ftdichip.com/Support/Documents/DataSheets/Cables/DS_TTL-232R_CABLES.pdf#page=11)
- 
-
-## Wiring
-
-This is how the result of wiring looks:
-
-![](hardware_overview.jpg)
+## Communication Wiring
 
 ### Locations
  * *parallel* is the the Kobuki parallel port
- * *UEXT* is the extension connector on the Olimex STM32-E407 board
- * *BOOT* is USART3 on the Olimex board
- * *PG* is the PG3 pin row on the Olimex board
- 
-Here I have marked these on the boards:
+ * *UEXT* is the extension connector on the Olimex STM32-E407 board (next to the JTAG)
 
-TODO: Add PG marker once we have the board soldered right.
+### Connections
 
-![](connections_mcus.jpg)
-
+The following table lists the three connections needed:
 
 |  Source  | SName  | Pin | Meaning | Dest | DName | Dest Pin |
 |----------|--------|-----|---------|------|-------|----------|
